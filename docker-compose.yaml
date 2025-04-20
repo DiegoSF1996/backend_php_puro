@@ -2,9 +2,10 @@ version: '3'
 services:
 #container que faz a mesma coisa sem utilizar o Dockerfile
   php:
+    container_name: app_php
     image: php:8.2-cli
     ports:
-      - 9000:80
+      - 8029:80
     volumes:
       - .:/usr/src/www
     working_dir: /usr/src/www
