@@ -1,8 +1,20 @@
 version: '3'
 services:
+#container que faz a mesma coisa sem utilizar o Dockerfile
+  php:
+    image: php:8.2-cli
+    ports:
+      - 9000:80
+    volumes:
+      - .:/usr/src/www
+    working_dir: /usr/src/www
+    command: php -S 0.0.0:80
   app_php1:
     container_name: app_php_1
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: desafio_php
     ports: 
     - 8030:80
     networks:
@@ -11,7 +23,10 @@ services:
       - .:/usr/src/www
   app_php2:
     container_name: app_php_2
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: desafio_php
     ports: 
     - 8031:80
     networks:
